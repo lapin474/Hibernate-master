@@ -1,10 +1,10 @@
-package jm.task.core.jdbc.dao;
+package jm.task.core;
 
-import jm.task.core.jdbc.model.User;
+import jm.task.core.jdbc.model.JDCBUser;
 
 import java.util.List;
 
-public interface UserDao {
+public interface UserService {
     void createUsersTable();
 
     void dropUsersTable();
@@ -13,7 +13,7 @@ public interface UserDao {
 
     void removeUserById(long id);
 
-    List<User> getAllUsers();
+    List<? extends User> getAllUsers();
 
     void cleanUsersTable();
 }
