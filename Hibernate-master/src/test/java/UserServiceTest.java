@@ -1,7 +1,7 @@
-import jm.task.core.User;
-import jm.task.core.UserService;
-import jm.task.core.jdbc.model.JDCBUser;
-import jm.task.core.jdbc.service.UserServiceImplJDBC;
+import jm.task.core.Hibernate.model.User;
+import jm.task.core.Hibernate.service.UserService;
+
+import jm.task.core.Hibernate.service.UserServiceImpl;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class UserServiceTest {
-    private final UserService userService = new UserServiceImplJDBC();
+    private final UserService userService = new UserServiceImpl();
 
     private final String testName = "Ivan";
     private final String testLastName = "Ivanov";
@@ -46,7 +46,7 @@ public class UserServiceTest {
             userService.createUsersTable();
             userService.saveUser(testName, testLastName, testAge);
 
-            JDCBUser user = userService.getAllUsers().get(0);
+            User user = userService.getAllUsers().get(0);
 
             if (!testName.equals(user.getName())
                     || !testLastName.equals(user.getLastName())

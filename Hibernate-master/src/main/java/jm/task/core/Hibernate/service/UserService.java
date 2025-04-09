@@ -1,8 +1,7 @@
-package jm.task.core;
-
-import jm.task.core.jdbc.model.JDCBUser;
+package jm.task.core.Hibernate.service;
 
 import java.util.List;
+import jm.task.core.Hibernate.model.User;
 
 public interface UserService {
     void createUsersTable();
@@ -13,7 +12,7 @@ public interface UserService {
 
     void removeUserById(long id);
 
-    List<? extends User> getAllUsers();
+    List<User> getAllUsers();
 
     void cleanUsersTable();
 }

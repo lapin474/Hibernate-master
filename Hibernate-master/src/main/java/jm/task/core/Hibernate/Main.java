@@ -1,29 +1,17 @@
-package jm.task.core;
+package jm.task.core.Hibernate;
 
-import jm.task.core.Hibernate.model.HibernateUser;
-import jm.task.core.Hibernate.service.UserServiceImplHibernate;
-import jm.task.core.UserService;
-import jm.task.core.jdbc.model.JDCBUser;
-import jm.task.core.jdbc.service.UserServiceImplJDBC;
-import jm.task.core.User;
+import jm.task.core.Hibernate.model.User;
+import jm.task.core.Hibernate.service.UserServiceImpl;
+import jm.task.core.Hibernate.service.UserService;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
-        UserService userServiceJDBC = new UserServiceImplJDBC();
-        UserService userServiceHibernate = new UserServiceImplHibernate();
+        UserService userService = new UserServiceImpl();
 
         System.out.println("Тестирование Hibernate:");
-        runUserTest(userServiceHibernate);
-
-        System.out.println("Тестирование JDBC:");
-        runUserTest(userServiceJDBC);
-    }
-
-    public static <T extends User> void runUserTest(UserService userService) throws SQLException {
-        userService.createUsersTable();
 
         userService.saveUser("Name1", "LastName1", (byte) 20);
         userService.saveUser("Name2", "LastName2", (byte) 25);
@@ -33,7 +21,7 @@ public class Main {
         userService.removeUserById(1);
 
         System.out.println("Пользователи:");
-        List<? extends User> users = userService.getAllUsers();
+        List<User> users = userService.getAllUsers();
         if (users.isEmpty()) {
             System.out.println("Нет пользователей в базе.");
         } else {

@@ -1,6 +1,6 @@
-package jm.task.core;
+package jm.task.core.Hibernate.dao;
 
-import jm.task.core.jdbc.model.JDCBUser;
+import jm.task.core.Hibernate.model.User;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public interface UserDao {
 
     void removeUserById(long id);
 
-    List<? extends User> getAllUsers();
+    List<User> getAllUsers();
 
     void cleanUsersTable();
 }
